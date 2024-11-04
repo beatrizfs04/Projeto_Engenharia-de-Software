@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Home - Tour-It</title>
+        <!-- <link rel="stylesheet" href="styles"> -->
+         <style>
+            /* Reset básico */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+            }
+
+            /* Gradiente de fundo */
+            body {
+                background: linear-gradient(to bottom, #01332D, #045A50, #0A9080);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+
+            /* Componentes da Página */
+            .container {
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            /* Logo */
+            .logo {
+                width: 40%; 
+                margin-bottom: 50px;
+                animation: fadeInUp 0.8s ease forwards;
+            }
+
+            /* Caixa de forms */
+            .login-box {
+                background-color: #ffffff;
+                width: 80%;
+                height: 60%;
+                padding: 5%;
+                border-radius: 25px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                text-align: center;
+                opacity: 0;
+                transform: translateY(50px);
+                animation: fadeInUp 0.8s ease forwards;
+            }
+
+            /* Animação - Child 1 */
+            .login-box:nth-child(1) {
+                animation-delay: 0.2s;
+            }
+
+            /* Animação - Child 2 */
+            .login-box:nth-child(2) {
+                animation-delay: 0.4s;
+            }
+
+            /* Animação - Child 3 */
+            .login-box:nth-child(3) {
+                animation-delay: 0.6s;
+            }
+
+            /* Animação */
+            @keyframes fadeInUp {
+                0% {
+                    opacity: 0;
+                    transform: translateY(50px);
+                }
+                100% {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            /* Titulo forms */
+            .login-box h2 {
+                margin-top: 20px;
+                margin-bottom: 20px;
+                font-size: 200%;
+                color: #034941;
+            }
+            
+            /* Butão de submião */
+            button {
+                border: 0.1px solid #01332D;
+                margin: 10px;
+                color: #01332D;
+                width: 65%;
+                height: 45px;
+                border-radius: 15px;
+                font-size: 100%;
+                cursor: pointer;
+            }
+         </style>
+    </head>
+    <body onload="LoadFirstPage()">
+        <div class="container">
+            <img class="logo" src="logo" alt="Logo">
+            <div class="login-box">
+                <h2>Bem-Vindo!</h2>
+                <button id="login">Login</button>
+                <button id="register">Register</button>
+            </div>
+        </div>
+    </body>
+    <script src="scripts"></script>
+    <script>
+        const response = fetch('/api/', {
+            method: 'GET', 
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        document.querySelector('#login').addEventListener('click', async function() {
+            window.location.replace("/login");
+        });
+
+        document.querySelector('#register').addEventListener('click', async function() {
+            window.location.replace("/register");
+        });
+    </script>
+</html>

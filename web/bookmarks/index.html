@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookmarks - Tour-It</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap');
+
+        body {
+            font-family: "Agdasima", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: orange;
+        }
+
+        header {
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            border-bottom-left-radius: 28px; /* Round the bottom of the header */
+            border-bottom-right-radius: 28px;
+            position: relative;
+            z-index: 1; /* Keep it below the container */
+        }
+
+        header img {
+            width: 10%;
+            height: auto;
+            padding: 10px;
+        }
+
+        header h1 {
+            align-items: center;
+            margin: 0;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .container {
+            padding: 2rem;
+            max-width: 900px;
+            margin: auto;
+            margin-top: -60px; /* Pull the container upwards to overlap the header */
+            position: relative; /* Allow positioning with z-index */
+            z-index: 2; /* Ensure it is above the header */
+            background-color: white;
+            border-top-left-radius: 28px; /* Rounded top corners */
+            border-top-right-radius: 28px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Add depth */
+        }
+
+        .bookmark {
+            position: relative; /* Needed to position the save icon inside each bookmark */
+            display: flex;
+            align-items: center;
+            background-color: white;
+            margin: 1rem;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .bookmark:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        .bookmark:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        .bookmark:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px); /* Start from below */
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0); /* End at final position */
+            }
+        }
+
+        .bookmark img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .bookmark-content {
+            padding: 1rem;
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .bookmark-title {
+            font-size: 1.4rem;
+            margin: 0;
+        }
+
+        .bookmark-description {
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .save-icon {
+            position: absolute; /* Positioning inside the bookmark */
+            bottom: 10px; 
+            right: 10px;
+            width: 24px;
+            height: 24px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s;
+            color: gray; /* Default gray color */
+        }
+
+        .save-icon.saved {
+            color: orange; /* Change to orange when saved */
+        }
+
+        .save-icon::before {
+            content: '❤︎'; /* Heart character */
+            font-size: 24px;
+            display: block;
+            text-align: center;
+        }
+
+        /* Unified Styles for All Screens */
+        header img {
+            width: 35%; /* Adjusted for better display on larger screens */
+            height: auto;
+            padding: 10px;
+        }
+
+        .container {
+            padding: 2rem;
+            max-width: 900px;
+            margin: auto;
+            border-top-left-radius: 28px;
+            border-top-right-radius: 28px;
+        }
+
+        .bookmark {
+            flex-direction: column; /* Use column layout to stack items */
+            text-align: center; /* Center text for better readability */
+        }
+
+        .bookmark img {
+            width: 100%; /* Use full width for bookmark images */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        .bookmark-content {
+            padding: 0.5rem; /* Less padding for a compact design */
+        }
+
+        .bookmark-title {
+            font-size: 1.4rem; /* Title size */
+        }
+
+        .bookmark-description {
+            font-size: 1.1rem; /* Description size */
+        }
+
+        .save-icon {
+            bottom: 10px; 
+            right: 10px;
+        }
+
+        .save-icon.saved {
+            color: orange; /* Change to orange when saved */
+        }
+
+        .save-icon::before {
+            font-size: 24px; /* Heart icon size */
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <img alt="Tour-It Logo" src="/logo"/>
+        <h1>Bookmarks</h1>
+    </header>
+
+    <div class="container">
+        <div class="bookmark">
+            <img src="placeholder" alt="Pack Example">
+            <div class="bookmark-content">
+                <h2 class="bookmark-title">Pack Example</h2>
+                <p class="bookmark-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <button class="save-icon saved" onclick="toggleSave(this)"></button>
+            </div>
+        </div>
+
+        <div class="bookmark">
+            <img src="placeholder" alt="Hotel Example">
+            <div class="bookmark-content">
+                <h2 class="bookmark-title">Hotel Example</h2>
+                <p class="bookmark-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <button class="save-icon saved" onclick="toggleSave(this)"></button>
+            </div>
+        </div>
+
+        <div class="bookmark">
+            <img src="placeholder" alt="Place Example">
+            <div class="bookmark-content">
+                <h2 class="bookmark-title">Place Example</h2>
+                <p class="bookmark-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <button class="save-icon saved" onclick="toggleSave(this)"></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSave(element) {
+            element.classList.toggle('saved');
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotels - Tour-It</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap');
+
+        body {
+            font-family: "Agdasima", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            height: 100vh;
+        }
+
+        header {
+            color: #01332D;
+            text-align: center;
+            border-bottom-left-radius: 28px; /* Round the bottom of the header */
+            border-bottom-right-radius: 28px;
+            position: relative;
+            z-index: 1; /* Keep it below the container */
+            margin-bottom: 100px;
+        }
+
+        header .nav {
+            width: 100%;
+            height: 80px;
+            margin-bottom: 40px;
+            background: linear-gradient(to bottom, #01332D, #045A50, #0A9080);
+        }
+
+        .container .buttons {
+            position: relative;
+            z-index: 2;
+            align-items: center;
+            text-align: center;
+            font-size: 2rem;
+            background-color: white;
+            border-radius: 40px;
+            padding: 20px;
+            border: none;
+            top: -60px;
+            box-shadow: 0px -7px 9px rgba(0, 0, 0, 0.1);
+        }
+
+        .buttons button{
+            border-radius: 20px;
+            padding: 15px;
+            border: none;
+        }
+
+        .container {
+            padding: 2rem;
+            max-width: 900px;
+            margin: auto;
+            position: relative; /* Allow positioning with z-index */
+            z-index: 2; /* Ensure it is above the header */
+            background-color: #0A9080;
+            border-top-left-radius: 70px; /* Rounded top corners */
+            border-top-right-radius: 70px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Add depth */
+            margin: auto;
+        }
+
+        .container .bookmark{
+            top: -20px;
+        }
+        .bookmark {
+            position: relative; /* Needed to position the save icon inside each bookmark */
+            display: flex;
+            align-items: center;
+            background-color: white;
+            margin: 1rem;
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s ease forwards;
+            flex-direction: column; 
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .bookmark img {
+            width: 100%; 
+            height: auto; 
+            object-fit: cover;
+        }
+
+        .bookmark-content {
+            padding: 0.5rem;
+            flex-grow: 1;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .bookmark-title {
+            font-size: 1.4rem;
+            margin-left: 15px;
+            margin-top: 0%;
+            margin-bottom: 0%;
+            margin-right: 0%;
+        }
+
+        .bookmark-description {
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+            color: #555;
+            margin: 15px;
+        }
+
+        .save-icon {
+            position: absolute; /* Positioning inside the bookmark */
+            right: 30px;
+            top: 5px;
+            width: 24px;
+            height: 24px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s;
+            color: rgba(0, 0, 0, 0.767); /* Default gray color */
+        }
+
+        .save-icon.saved {
+            color: red; /* Change to orange when saved */
+        }
+
+        .save-icon::before {
+            content: '❤︎'; /* Heart character */
+            font-size: 24px;
+            display: block;
+            text-align: center;
+        }        
+
+        .bookmark:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+        .bookmark:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+        .bookmark:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px); /* Start from below */
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0); /* End at final position */
+            }
+        }
+
+    </style>
+</head>
+<body onload="CheckSession()">
+    <header>
+        <div class="nav"></div>
+    </header>
+
+    <div class="container">
+        <div class="buttons">
+            <button>Hotels</button>
+            <button>Atividades</button>
+            <button>Locais</button>
+            <button>Packs</button>
+        </div>
+        <div class="bookmark">
+            <img src="placeholder" alt="Hotel Example">
+            <div class="bookmark-content">
+                <h2 class="bookmark-title">Hotel Example</h2>
+                <p class="bookmark-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <button class="save-icon" onclick="toggleSave(this)"></button>
+            </div>
+        </div>
+
+        <div class="bookmark">
+            <img src="placeholder" alt="Hotel Example">
+            <div class="bookmark-content">
+                <h2 class="bookmark-title">Hotel Example</h2>
+                <p class="bookmark-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <button class="save-icon" onclick="toggleSave(this)"></button>
+            </div>
+        </div>
+
+        <div class="bookmark">
+            <img src="placeholder" alt="Hotel Example">
+            <div class="bookmark-content">
+                <h2 class="bookmark-title">Hotel Example</h2>
+                <p class="bookmark-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <button class="save-icon" onclick="toggleSave(this)"></button>
+            </div>
+        </div>
+
+        <div class="bookmark">
+            <img src="placeholder" alt="Hotel Example">
+            <div class="bookmark-content">
+                <h2 class="bookmark-title">Hotel Example</h2>
+                <p class="bookmark-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <button class="save-icon" onclick="toggleSave(this)"></button>
+            </div>
+        </div>
+
+        <div class="bookmark">
+            <img src="placeholder" alt="Hotel Example">
+            <div class="bookmark-content">
+                <h2 class="bookmark-title">Hotel Example</h2>
+                <p class="bookmark-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <button class="save-icon" onclick="toggleSave(this)"></button>
+            </div>
+        </div>
+
+        <div class="bookmark">
+            <img src="placeholder" alt="Hotel Example">
+            <div class="bookmark-content">
+                <h2 class="bookmark-title">Hotel Example</h2>
+                <p class="bookmark-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <button class="save-icon" onclick="toggleSave(this)"></button>
+            </div>
+        </div>
+
+        <div class="bookmark">
+            <img src="placeholder" alt="Hotel Example">
+            <div class="bookmark-content">
+                <h2 class="bookmark-title">Hotel Example</h2>
+                <p class="bookmark-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <button class="save-icon" onclick="toggleSave(this)"></button>
+            </div>
+        </div>
+
+        <div class="bookmark">
+            <img src="placeholder" alt="Hotel Example">
+            <div class="bookmark-content">
+                <h2 class="bookmark-title">Hotel Example</h2>
+                <p class="bookmark-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <button class="save-icon" onclick="toggleSave(this)"></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleSave(element) {
+            element.classList.toggle('saved');
+        }
+    </script>
+
+</body>
+<script src="scripts"></script>
+</html>

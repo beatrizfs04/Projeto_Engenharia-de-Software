@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Register - Tour-It</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap');
+    
+            /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Gradiente de fundo */
+        body {
+            background: linear-gradient(to bottom, #01332D, #045A50, #0A9080);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Componentes da Página */
+        .container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Logo */
+        .logo {
+            width: 40%; 
+            margin-bottom: 50px;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Caixa de forms */
+        .login-box {
+            background-color: #ffffff;
+            width: 80%;
+            height: 60%;
+            padding: 5%;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Animação - Child 1 */
+        .login-box:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        /* Animação - Child 2 */
+        .login-box:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        /* Animação - Child 3 */
+        .login-box:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        /* Animação */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Titulo forms */
+        .login-box h2 {
+            margin-bottom: 20px;
+            font-size: 200%;
+            color: #034941;
+        }
+
+        /* Campos de formulário */
+        .login-box input {
+            width: 100%;
+            padding: 20px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 100px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        /* Estilos para o input quando está em foco */
+        .login-box input:focus {
+            border-color: #01332D;
+        }
+
+        /* Botões Submição */
+        .social-login {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        /* Estilo dos botões de rede social com ícones */
+        .google-btn,
+        .facebook-btn {
+            width: 40px;
+            height: 40px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* Imagens das redes sociais */
+        .google-btn img,
+        .facebook-btn img {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Butão de submião */
+        .submit-btn {
+            background-color: #034941;
+            color: #ffffff;
+            width: 65%;
+            height: 45px;
+            border: none;
+            border-radius: 15px;
+            font-size: 100%;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #message {
+            padding-top: 20px;
+            font-weight: bolder;
+        }    
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <img class="logo" src="logo" alt="Logo">
+            <div class="login-box">
+                <h2>Register</h2>
+                <form id="loginForm">
+                    <input type="text" id="fullname" name="fullname" placeholder="Nome Completo" required>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <div class="social-login">
+                        <a class="google-btn">
+                            <img src="google" alt="Google">
+                        </a>
+                        <button type="submit" class="submit-btn">Entrar</button>
+                        <a class="facebook-btn">
+                            <img src="facebook" alt="Facebook">
+                        </a>
+                    </div>
+                </form>
+    
+                <div id="message"></div>
+            </div>
+        </div>
+    </body>
+    <!-- <script src="scripts"></script> -->
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const fullname = document.getElementById('fullname').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const messageBox = document.getElementById('message');
+
+            const queryParams = new URLSearchParams({ fullname, email, password }).toString();
+            const url = `/api/register?${queryParams}`;
+            try {
+                const response = await fetch(url, {
+                    method: 'POST', 
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    messageBox.textContent = 'Register Successfully! \nRedirecting...';
+                    messageBox.style.color = 'green';
+                    setTimeout(() => {
+                        window.location.replace("/login");
+                    }, "2500");
+                } else {
+                    messageBox.textContent = `Error: ${result.message}`;
+                    messageBox.style.color = 'red';
+                }
+            } catch (error) {
+                messageBox.textContent = 'An error occurred. Please try again.';
+                messageBox.style.color = 'red';
+            }
+        });
+
+        document.querySelector('.google-btn').addEventListener('click', async function() {
+            const response = await fetch('/auth/google/', {
+                method: 'POST', 
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+        });
+
+        document.querySelector('.facebook-btn').addEventListener('click', async function() {
+            const response = await fetch('/auth/facebook/', {
+                method: 'POST', 
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+        });
+    </script>
+</html>
