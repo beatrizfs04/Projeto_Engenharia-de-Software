@@ -1,24 +1,14 @@
-const jwt = require('jsonwebtoken');
+const express = require('express');
+const app = express();
+var auth = express.Router();
+var functions = {};
 
-module.exports.isAuthorized = async function (req, res, next) {
-    const token = req.headers['authorization'];
+auth.post('/google/', async(req, res) => {
+    console.log("User Trying to Login With Google.");
+});
 
-    if (!token) {
-        return null;
-    }
+auth.post('/facebook/', async(req, res) => {
+    console.log("User Trying to Login With Facebook.");
+});
 
-    jwt.verify(token, 'ddosproject', async (err, decoded) => {
-        if (err) {
-            return null;
-        }
-
-        sql.query('SELECT * FROM users WHERE username = ?', [username], async (err, results) => {
-            if (results.length === 0) {
-                return null;
-            }
-
-            req.user = { username: results[0].username, name: results[0].name, email: results[0].email };
-            return req.user;
-        });        
-    });
-};
+module.exports = auth;

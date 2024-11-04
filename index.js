@@ -2,22 +2,34 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-const routes = require('./routes');
+const api = require('./api');
+const auth = require('./auth');
 
 /* WEB */
 app.get('/', function(req, res) { res.sendFile(path.join(__dirname, '/web/index.html')) });
-app.get('/login', function(req, res) { res.sendFile(path.join(__dirname, '/web/login.html')) });
-app.get('/register', function(req, res) { res.sendFile(path.join(__dirname, '/web/register.html')) });
-app.get('/dashboard', function(req, res) { res.sendFile(path.join(__dirname, '/web/dashboard.html')) });
-app.get('/profile', function(req, res) { res.sendFile(path.join(__dirname, '/web/profile.html')) });
-app.get('/status', function(req, res) { res.sendFile(path.join(__dirname, '/web/status.html')) });
-app.get('/check-service', function(req, res) { res.sendFile(path.join(__dirname, '/web/check-service.html')) });
+app.get('/bookmarks', function(req, res) { res.sendFile(path.join(__dirname, '/web/bookmarks/index.html')) });
+app.get('/hotels', function(req, res) { res.sendFile(path.join(__dirname, '/web/hotels/index.html')) });
+app.get('/places', function(req, res) { res.sendFile(path.join(__dirname, '/web/places/index.html')) });
+app.get('/packs', function(req, res) { res.sendFile(path.join(__dirname, '/web/packs/index.html')) });
+app.get('/cart', function(req, res) { res.sendFile(path.join(__dirname, '/web/cart/index.html')) });
+app.get('/login', function(req, res) { res.sendFile(path.join(__dirname, '/web/login/index.html')) });
+app.get('/register', function(req, res) { res.sendFile(path.join(__dirname, '/web/register/index.html')) });
+app.get('/404', function(req, res) { res.sendFile(path.join(__dirname, '/web/404.html')) });
 
 /* API */
-app.use('/api/', routes);
-app.use('/styles', function(req, res) { res.sendFile(path.join(__dirname, '/web/styles.css')) });
-app.use('/scripts', function(req, res) { res.sendFile(path.join(__dirname, '/web/script.js')) });
+app.use('/api/', api);
+app.use('/auth/', auth);
+app.use('/logo', function(req, res) { res.sendFile(path.join(__dirname, '/web/tourit-logo.png'));});
+app.use('/google', function(req, res) { res.sendFile(path.join(__dirname, '/web/google.png'));});
+app.use('/facebook', function(req, res) { res.sendFile(path.join(__dirname, '/web/facebook.png'));});
+app.use('/404Img', function(req, res) { res.sendFile(path.join(__dirname, '/web/404.png'));});
+app.use('/placeholder', function(req, res) { res.sendFile(path.join(__dirname, '/web/placeholder.png'));});
+app.use('/styles', function(req, res) { res.sendFile(path.join(__dirname, '/web/styles.css'));});
+app.use('/scripts', function(req, res) { res.sendFile(path.join(__dirname, '/web/scripts.js')) });
 
+app.use((req, res) => {
+    res.redirect('/404');
+});
 
 /* ON LOAD */
-app.listen(5173, () => { console.log(`> http://localhost:5173`) });
+app.listen(5000, () => { console.log(`> http://localhost:5000`) });
