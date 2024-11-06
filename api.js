@@ -41,7 +41,7 @@ api.post('/register/', async(req, res) => {
     const email = (req.query && req.query.email ? req.query.email : null);
     const password = (req.query && req.query.password ? req.query.password : null);
     console.log(fullname, email, password);
-    if (!fullname || !email || !password) { res.status(400).send('Needed All Credentials.'); }
+    if (!fullname || !email || !password) { return res.status(400).send('Needed All Credentials.'); }
     try {
         sql.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
             if (err) { res.status(500).send('An Error Occurred.'); }
