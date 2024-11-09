@@ -11,6 +11,7 @@ app.get('/bookmarks', function(req, res) { res.sendFile(path.join(__dirname, '/w
 app.get('/hotels', function(req, res) { res.sendFile(path.join(__dirname, '/web/hotels/index.html')) });
 app.get('/activities', function(req, res) { res.sendFile(path.join(__dirname, '/web/activities/index.html')) });
 app.get('/packs', function(req, res) { res.sendFile(path.join(__dirname, '/web/packs/index.html')) });
+app.get('/filters', function(req, res) { res.sendFile(path.join(__dirname, '/web/filters/index.html')) });
 app.get('/cart', function(req, res) { res.sendFile(path.join(__dirname, '/web/cart/index.html')) });
 app.get('/login', function(req, res) { res.sendFile(path.join(__dirname, '/web/login/index.html')) });
 app.get('/register', function(req, res) { res.sendFile(path.join(__dirname, '/web/register/index.html')) });
