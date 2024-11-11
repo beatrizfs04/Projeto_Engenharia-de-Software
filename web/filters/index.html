@@ -72,6 +72,27 @@
             margin-left: 60px;
         }
 
+        #date {
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            gap: 30px;
+        }
+
+        #date input[type=date]{
+            border-radius: 5px;
+            height: 20px;
+            padding: 6px;
+            background-color: #cdcdcd;
+            border: none;
+            outline: none;
+        }
+
+        .separator { /*barra entre as datas*/
+            color: #878787; 
+            font-size: 40px; 
+        }
+
     </style>
 </head>
 <body onload="CheckSession()">
@@ -85,6 +106,11 @@
         <h1>Tipo</h1>
         <hr>
         <h1>Data</h1>
+            <div id="date">
+                <input type="date" id="birthday" name="from">
+                <span class="separator">-</span>
+                <input type="date" id="birthday" name="to ">
+            </div>
         <hr>
         <h1>Pessoas</h1>
         <hr>
