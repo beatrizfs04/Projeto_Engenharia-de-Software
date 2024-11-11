@@ -15,6 +15,8 @@ app.get('/filters', function(req, res) { res.sendFile(path.join(__dirname, '/web
 app.get('/cart', function(req, res) { res.sendFile(path.join(__dirname, '/web/cart/index.html')) });
 app.get('/login', function(req, res) { res.sendFile(path.join(__dirname, '/web/login/index.html')) });
 app.get('/register', function(req, res) { res.sendFile(path.join(__dirname, '/web/register/index.html')) });
+app.get('/forgot', function(req, res) { res.sendFile(path.join(__dirname, '/web/forgot/index.html')) });
+app.get('/reset', function(req, res) { res.sendFile(path.join(__dirname, '/web/reset/index.html')) });
 app.get('/404', function(req, res) { res.sendFile(path.join(__dirname, '/web/404.html')) });
 
 /* API */
