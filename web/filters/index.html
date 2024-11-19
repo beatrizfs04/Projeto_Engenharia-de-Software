@@ -83,15 +83,125 @@
             border-radius: 5px;
             height: 20px;
             padding: 6px;
+            color: #ffff;
             background-color: #cdcdcd;
             border: none;
             outline: none;
+        }
+
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            filter: invert(1); /* Inverte cores para branco no ícone */
         }
 
         .separator { /*barra entre as datas*/
             color: #878787; 
             font-size: 40px; 
         }
+
+        .centralize{
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+        }
+        /*slider de preços*/
+
+        #preco {
+            gap: 10px;
+            align-items: center; 
+            display: flex;
+            justify-content: center; 
+            flex-direction: column;
+        }
+
+
+        .slider {
+          -webkit-appearance: none; 
+          appearance: none;
+          width: 370px; 
+          height: 2px; 
+          background: #555555; 
+          outline: none; 
+          opacity: 0.7; 
+          -webkit-transition: .2s; 
+          transition: opacity .2s;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none; 
+            appearance: none;
+            border-radius: 20px;
+            width: 15px; 
+            height: 15px; 
+            background: #04AA6D; 
+            cursor: pointer; 
+        }
+
+        /*Pessoas*/
+        #pessoas{
+            color:#878787;
+        }
+
+        #pessoas hr{
+            border-top: 0.5px solid #bdbdbd;
+            margin-right: 40px;
+            margin-left: 40px;
+            margin-bottom: 50px;
+        }
+
+        #pessoas input[type=number]{
+            border-radius: 5px;
+            height: 20px;
+            width: 30px;
+            padding: 6px;
+            background-color: #d8d3d3;
+            border: none;
+            outline: none;
+            text-align: center;
+            color:rgb(66, 66, 66);
+        }
+
+        .input-pessoas{
+            display: flex;
+            gap:  80px; 
+            justify-content: center;
+            align-items: center; 
+        }
+
+        /*min e max preco*/
+        .input-number {
+            display: flex;
+            gap:  285px; 
+            justify-content: center;
+            align-items: center; 
+        }
+        
+        #preco input[type=number]{
+            border-radius: 5px;
+            height: 20px;
+            width: 30px;
+            padding: 6px;
+            background-color: #d8d3d3;
+            border: none;
+            outline: none;
+            text-align: center;
+            color:rgb(66, 66, 66);
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* condições finais */
+
+        .input-extra{
+            display: flex;
+            gap:  285px; 
+            justify-content: center;
+            align-items: center; 
+        }
+
 
     </style>
 </head>
@@ -113,12 +223,51 @@
             </div>
         <hr>
         <h1>Pessoas</h1>
+        <div id="pessoas">
+            <div class="input-pessoas">
+                <p>Adultos</p>
+                <input type="number" id="numBaby" name="from">
+            </div>
+            <hr>
+            <div class="input-pessoas">
+                <p>Crianças</p>
+                <input type="number" id="numBaby" name="from">
+            </div>            
+            <hr>
+            <div class="input-pessoas">
+                <p>Bebés </p>
+                <input type="number" id="numBaby" name="from">
+            </div>
+            <hr>
+        </div>
         <hr>
         <h1>Faixa de Preço</h1>
+            <div id="preco">
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="2500" value="50" class="slider" id="myRange">
+                </div>
+                <div class="input-number">
+                    <input type="number" id="minPrice" name="min" min="1" max="5" value="20">
+                    <input type="number" id="maxPrice" name="max" min="1" max="5" value="2500">
+                </div>
+                <div class="input-number">
+                    <p>Mínimo</p>
+                    <p>Máximo</p>
+                </div>
+            </div>
         <hr>
-        <h2>Necessidades Especiais</h2>        
-        <h2>Pets</h2>
-        <h2>Adaptadas à Família</h2>
+        <div class="input-extra">
+            <h2>Necessidades Especiais</h2>
+            <!-- <input type="checkbox"> -->
+        </div>
+        <div class="input-extra">
+            <h2>Pets</h2>
+            <!-- <input type="checkbox" > -->
+        </div>
+        <div class="input-extra">
+            <h2>Adaptadas à Família</h2>
+            <!-- <input type="checkbox"> -->
+        </div>
     </div>
    
     
@@ -127,6 +276,30 @@
         function toggleSave(element) {
             element.classList.toggle('saved');
         }
+
+                // S eleciona os elementos do DOM
+        const rangeSlider = document.getElementById('myRange');
+        const minInput = document.getElementById('minPrice');
+        const maxInput = document.getElementById('maxPrice');
+
+        function updateSlider() {
+            const min = parseInt(minInput.value);
+            const max = parseInt(maxInput.value);
+
+        }
+
+        function updateInputs() {
+           
+        }
+
+        // Eventos de atualização
+        minInput.addEventListener('input', updateSlider);
+        maxInput.addEventListener('input', updateSlider);
+        rangeSlider.addEventListener('input', updateInputs);
+
+        // Inicializa os valores
+        updateSlider();
+
     </script>
 
 </body>
