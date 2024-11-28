@@ -40,7 +40,7 @@
         .container {
             padding: 2rem;
             max-width: 900px;
-            height: 70vh;
+            height: 90vh;
             margin: auto;
             margin-top: -60px; /* Pull the container upwards to overlap the header */
             position: relative; /* Allow positioning with z-index */
@@ -48,8 +48,6 @@
             background-color: white;
             border-top-left-radius: 28px;
             border-top-right-radius: 28px;
-            border-bottom-left-radius: 28px;
-            border-bottom-right-radius: 28px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Add depth */
         }
 
@@ -125,13 +123,12 @@
             margin: auto;
             border-top-left-radius: 28px;
             border-top-right-radius: 28px;
-            border-bottom-left-radius: 28px;
-            border-bottom-right-radius: 28px;
         }
 
         .bookmark {
             flex-direction: column; /* Use column layout to stack items */
             text-align: center; /* Center text for better readability */
+            margin-bottom: 20pt;
         }
 
         .bookmark img {
@@ -177,6 +174,16 @@
     </header>
 
     <div class="container">
+        <div class="bookmark">
+            <img src="placeholder" alt="Product Example">
+            <div class="bookmark-content">
+                <h2 class="bookmark-title">Product Example</h2>
+                <p class="bookmark-description">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </p>
+                <button class="remove-item">Remove</button>
+            </div>
+        </div>
         <div class="bookmark">
             <img src="placeholder" alt="Product Example">
             <div class="bookmark-content">
