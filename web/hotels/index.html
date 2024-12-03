@@ -46,12 +46,17 @@
             margin-right: 10px;
             background-color: #ccc;
             border-radius: 50%;
+            float: left;
         }
          
         .nav .nav2 .filtros a {
             font-weight: bold;
             text-decoration: none;
             color: #045A50;
+        }
+
+        .nav .nav2 .filtros a i {
+            margin-top: 30%;
         }
 
         .nav .pesquisa  {
@@ -90,22 +95,38 @@
 
         .container .buttons {
             position: relative;
-            z-index: 2;
             align-items: center;
             text-align: center;
-            font-size: 2rem;
+            font-size: 1.2rem;
             background-color: white;
             border-radius: 40px;
             padding: 20px;
             border: none;
             top: -60px;
             box-shadow: 0px -7px 9px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-around;
+            z-index: 1000;
         }
 
         .buttons button{
             border-radius: 20px;
             padding: 15px;
+            margin: 10px;
             border: none;
+        }
+
+        .buttons button.active {
+            color: #045A50;
+        }
+        
+        .buttons button i {
+            padding-bottom: 10px;
+            font-size: 1.6rem;
+        }        
+
+        .buttons button span {
+            font-size: 0.8rem;
         }
 
         .container {
@@ -169,8 +190,8 @@
             margin: 15px;
         }
 
-        .save-icon {
-            position: absolute; /* Positioning inside the bookmark */
+        .bookmark button {
+            position: absolute;
             right: 30px;
             top: 5px;
             width: 24px;
@@ -179,15 +200,11 @@
             border: none;
             cursor: pointer;
             transition: color 0.3s;
-            color: rgba(0, 0, 0, 0.767); /* Default gray color */
+            color: rgba(0, 0, 0, 0.767);
+            padding-right: 17.5%;
         }
 
-        .save-icon.saved {
-            color: red; /* Change to orange when saved */
-        }
-
-        .save-icon::before {
-            content: '❤︎'; /* Heart character */
+        .bookmark i::before {
             font-size: 24px;
             display: block;
             text-align: center;
@@ -246,7 +263,7 @@
 
     </style>
 </head>
-<body onload="CheckSession()">
+<body>
     <header>
         <div class="nav">
             <div class="nav2">
@@ -262,14 +279,22 @@
         </div>
     </header>
 
-    <div class="container">
+    <div id="container" class="container">
         <div class="buttons">
-            <button>Hotels</button>
-            <button>Atividades</button>
-            <button>Locais</button>
-            <button>Packs</button>
+            <button class="active" onclick="window.location.href='/hotels'">
+                <i class="fas fa-home"></i>
+                <span>Hotéis</span>
+            </button>
+            <button onclick="window.location.href='/events'">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Eventos</span>
+            </button>
+            <button onclick="window.location.href='/packs'">
+                <i class="fas fa-gift"></i>
+                <span>Packs</span>
+            </button>
         </div>
-        <div class="bookmark">
+        <!-- <div class="bookmark">
             <img src="placeholder" alt="Hotel Example">
             <div class="bookmark-content">
                 <h2 class="bookmark-title">Hotel Example</h2>
@@ -278,84 +303,7 @@
                 </p>
                 <button class="save-icon" onclick="toggleSave(this)"></button>
             </div>
-        </div>
-
-        <div class="bookmark">
-            <img src="placeholder" alt="Hotel Example">
-            <div class="bookmark-content">
-                <h2 class="bookmark-title">Hotel Example</h2>
-                <p class="bookmark-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="save-icon" onclick="toggleSave(this)"></button>
-            </div>
-        </div>
-
-        <div class="bookmark">
-            <img src="placeholder" alt="Hotel Example">
-            <div class="bookmark-content">
-                <h2 class="bookmark-title">Hotel Example</h2>
-                <p class="bookmark-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="save-icon" onclick="toggleSave(this)"></button>
-            </div>
-        </div>
-
-        <div class="bookmark">
-            <img src="placeholder" alt="Hotel Example">
-            <div class="bookmark-content">
-                <h2 class="bookmark-title">Hotel Example</h2>
-                <p class="bookmark-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="save-icon" onclick="toggleSave(this)"></button>
-            </div>
-        </div>
-
-        <div class="bookmark">
-            <img src="placeholder" alt="Hotel Example">
-            <div class="bookmark-content">
-                <h2 class="bookmark-title">Hotel Example</h2>
-                <p class="bookmark-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="save-icon" onclick="toggleSave(this)"></button>
-            </div>
-        </div>
-
-        <div class="bookmark">
-            <img src="placeholder" alt="Hotel Example">
-            <div class="bookmark-content">
-                <h2 class="bookmark-title">Hotel Example</h2>
-                <p class="bookmark-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="save-icon" onclick="toggleSave(this)"></button>
-            </div>
-        </div>
-
-        <div class="bookmark">
-            <img src="placeholder" alt="Hotel Example">
-            <div class="bookmark-content">
-                <h2 class="bookmark-title">Hotel Example</h2>
-                <p class="bookmark-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="save-icon" onclick="toggleSave(this)"></button>
-            </div>
-        </div>
-
-        <div class="bookmark">
-            <img src="placeholder" alt="Hotel Example">
-            <div class="bookmark-content">
-                <h2 class="bookmark-title">Hotel Example</h2>
-                <p class="bookmark-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="save-icon" onclick="toggleSave(this)"></button>
-            </div>
-        </div>
+        </div> -->
     </div>
 
     <footer>
@@ -379,8 +327,81 @@
 </body>
 <script src="scripts"></script>
 <script>
+    CheckSession()
+    window.onload = async function() {
+        const container = document.getElementById("container");
+
+        try {
+            const response = await fetch('/api/hotels', {
+                method: 'GET', 
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const hotels = await response.json();
+
+            for (const hotel of hotels) {
+                const bookmarkDiv = document.createElement('div');
+                bookmarkDiv.classList.add('bookmark');
+
+                const img = document.createElement('img');
+                img.src = hotel.image;
+                img.alt = hotel.name;
+
+                const contentDiv = document.createElement('div');
+                contentDiv.classList.add('bookmark-content');
+
+                const title = document.createElement('h2');
+                title.classList.add('bookmark-title');
+                title.textContent = hotel.name+" - "+hotel.price+"€";
+
+                const location = document.createElement('p');
+                location.classList.add('bookmark-description');
+                location.textContent = hotel.location;
+
+                const description = document.createElement('p');
+                description.classList.add('bookmark-description');
+                description.textContent = hotel.description || 'Descrição não disponível.';
+
+                const buttonCart = document.createElement('button');
+                const iconCart = document.createElement('i');
+                iconCart.classList.add('fas', 'fa-cart-plus');
+                iconCart.style.color = '#045A50';
+                buttonCart.appendChild(iconCart);
+                buttonCart.setAttribute('onclick', 'toggleCart(this)');
+
+                const buttonBook = document.createElement('button');
+                const iconBook = document.createElement('i');
+                iconBook.classList.add('far', 'fa-bookmark');
+                iconBook.style.color = '#045A50';
+                buttonBook.appendChild(iconBook);
+                buttonBook.style.paddingRight = "0%";
+                buttonBook.setAttribute('onclick', 'toggleSave(this)');
+
+                contentDiv.appendChild(title);
+                contentDiv.appendChild(location);
+                contentDiv.appendChild(description);
+                contentDiv.appendChild(buttonCart);
+                contentDiv.appendChild(buttonBook);
+
+                bookmarkDiv.appendChild(img);
+                bookmarkDiv.appendChild(contentDiv);
+
+                container.appendChild(bookmarkDiv);
+            }
+        } catch (error) {
+            alert("An error occurred: " + error);
+        }
+    };
+
     function toggleSave(element) {
-        element.classList.toggle('saved');
+        const icon = element.querySelector('i');
+        icon.classList.toggle('fas');
+        icon.classList.toggle('far');
+    }
+
+    function toggleCart(element) {
     }
 </script>
 </html>

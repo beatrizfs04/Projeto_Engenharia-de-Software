@@ -9,7 +9,7 @@ const auth = require('./auth');
 app.get('/', function(req, res) { res.sendFile(path.join(__dirname, '/web/index.html')) });
 app.get('/bookmarks', function(req, res) { res.sendFile(path.join(__dirname, '/web/bookmarks/index.html')) });
 app.get('/hotels', function(req, res) { res.sendFile(path.join(__dirname, '/web/hotels/index.html')) });
-app.get('/activities', function(req, res) { res.sendFile(path.join(__dirname, '/web/activities/index.html')) });
+app.get('/events', function(req, res) { res.sendFile(path.join(__dirname, '/web/events/index.html')) });
 app.get('/packs', function(req, res) { res.sendFile(path.join(__dirname, '/web/packs/index.html')) });
 app.get('/filters', function(req, res) { res.sendFile(path.join(__dirname, '/web/filters/index.html')) });
 app.get('/cart', function(req, res) { res.sendFile(path.join(__dirname, '/web/cart/index.html')) });
