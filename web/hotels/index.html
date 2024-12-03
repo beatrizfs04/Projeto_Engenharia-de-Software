@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/08e7e3bedd.js" crossorigin="anonymous"></script>
     <title>Hotels - Tour-It</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap');
@@ -45,7 +46,12 @@
             margin-right: 10px;
             background-color: #ccc;
             border-radius: 50%;
-            float: left;
+        }
+         
+        .nav .nav2 .filtros a {
+            font-weight: bold;
+            text-decoration: none;
+            color: #045A50;
         }
 
         .nav .pesquisa  {
@@ -208,6 +214,36 @@
             }
         }
 
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f9f9f9;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 1000;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #444;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        footer a i {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        footer a.active {
+            color: #045A50;
+        }
+
     </style>
 </head>
 <body onload="CheckSession()">
@@ -215,7 +251,7 @@
         <div class="nav">
             <div class="nav2">
                 <div class="filtros">
-                    <img src="filtros" alt="fitros">
+                    <a href="filtros" alt="Fitros"><i class="fa-solid fa-sliders"></i></a>
                 </div>
                 <div class="pesquisa">
                     <form action="/action_page.php">
@@ -322,12 +358,29 @@
         </div>
     </div>
 
-    <script>
-        function toggleSave(element) {
-            element.classList.toggle('saved');
-        }
-    </script>
-
+    <footer>
+        <a href="/" class="active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="/bookmarks">
+            <i class="fas fa-bookmark"></i>
+            <span>Bookmark</span>
+        </a>
+        <a href="/cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+        </a>
+        <a href="/profile">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </footer>
 </body>
 <script src="scripts"></script>
+<script>
+    function toggleSave(element) {
+        element.classList.toggle('saved');
+    }
+</script>
 </html>

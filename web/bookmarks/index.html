@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/08e7e3bedd.js" crossorigin="anonymous"></script>
     <title>Bookmarks - Tour-It</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap');
@@ -182,6 +183,36 @@
             font-size: 24px; /* Heart icon size */
         }
 
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f9f9f9;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 1000;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #444;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        footer a i {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        footer a.active {
+            color: #045A50;
+        }
+
     </style>
 </head>
 <body>
@@ -226,11 +257,28 @@
         </div>
     </div>
 
-    <script>
-        function toggleSave(element) {
-            element.classList.toggle('saved');
-        }
-    </script>
-
+    <footer>
+        <a href="/">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="/bookmarks" class="active">
+            <i class="fas fa-bookmark"></i>
+            <span>Bookmark</span>
+        </a>
+        <a href="/cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+        </a>
+        <a href="/profile">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+        </a>
+    </footer>
 </body>
+<script>
+    function toggleSave(element) {
+        element.classList.toggle('saved');
+    }
+</script>
 </html>
