@@ -105,11 +105,31 @@ api.post('/update/', async (req, res) => {
 
 api.get('/hotels/', async (req, res) => {
     sql.query('SELECT * FROM hotels', [], async (err, results) => {
-        if (err) { res.status(500).send('An Error Occurred.'); }
+        if (err) { res.status(500).json({message: 'An Error Occurred.'}); }
         if (results.length > 0) {
             return res.status(200).json(JSON.parse(JSON.stringify(results)));
         }
-        return res.status(400).send('Email Não Encontrado.'); 
+        return res.status(400).json({});
+    });
+});
+
+api.get('/events/', async (req, res) => {
+    sql.query('SELECT * FROM events', [], async (err, results) => {
+        if (err) { res.status(500).json({message: 'An Error Occurred.'}); }
+        if (results.length > 0) {
+            return res.status(200).json(JSON.parse(JSON.stringify(results)));
+        }
+        return res.status(400).json({}); 
+    });
+});
+
+api.get('/packs/', async (req, res) => {
+    sql.query('SELECT * FROM packs', [], async (err, results) => {
+        if (err) { res.status(500).json({message: 'An Error Occurred.'}); }
+        if (results.length > 0) {
+            return res.status(200).json(JSON.parse(JSON.stringify(results)));
+        }
+        return res.status(400).json({}); 
     });
 })
 

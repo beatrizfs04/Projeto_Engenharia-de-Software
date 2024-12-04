@@ -346,7 +346,7 @@
                 bookmarkDiv.classList.add('bookmark');
 
                 const img = document.createElement('img');
-                img.src = hotel.image;
+                img.src = hotel.image || "/placeholder";
                 img.alt = hotel.name;
 
                 const contentDiv = document.createElement('div');
