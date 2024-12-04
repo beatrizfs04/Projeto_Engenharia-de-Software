@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet"  type='text/css'>
     <script src="https://kit.fontawesome.com/08e7e3bedd.js" crossorigin="anonymous"></script>
-    <title>Cart - Tour-It</title>
+    <title>Profile - Tour-It</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap');
 
@@ -267,20 +267,20 @@
     <header>
         <div class="nav">
             <div class="nav2">
-                <div class="filtros">
+                <!-- <div class="filtros">
                     <a href="filtros" alt="Fitros"><i class="fa-solid fa-sliders"></i></a>
                 </div>
                 <div class="pesquisa">
                     <form action="/action_page.php">
                         <input type="text" placeholder="Pesquisar" name="search">
                     </form>
-                </div>
+                </div> -->
             </div>
         </div>
     </header>
 
     <div id="container" class="container">
-        <h1 id="cartTitle">Cart</h1>
+        <h1 id="profileTitle">Profile</h1>
     </div>
 
     <footer>
@@ -292,11 +292,11 @@
             <i class="fas fa-bookmark"></i>
             <span>Bookmark</span>
         </a>
-        <a href="/cart" class="active">
+        <a href="/cart">
             <i class="fas fa-shopping-cart"></i>
             <span>Cart</span>
         </a>
-        <a href="/profile">
+        <a href="/profile" class="active">
             <i class="fas fa-user"></i>
             <span>Profile</span>
         </a>
@@ -311,70 +311,59 @@
         let userData = localStorage.getItem("userData") ? JSON.parse(localStorage.getItem("userData")) : null;
         if (userData) {
             console.log(userData); // userData should now be a parsed object
-            const cartTitle = document.getElementById("cartTitle");
-            cartTitle.textContent = `${userData.fullname}'s Cart`;
+            const profileTitle = document.getElementById("profileTitle");
+            profileTitle.textContent = `${userData.fullname}'s \nProfile`;
         }
 
         try {
-            const response = await fetch('/api/cart', {
+            const queryParams = new URLSearchParams({ id: userData.id }).toString();
+            const response = await fetch(`/api/profile?${queryParams}`, {
                 method: 'GET', 
                 headers: {
                     'Content-Type': 'application/json'
                 }
             });
 
-            const cart = await response.json();
+            const userInfo = await response.json();
 
-            for (const cartItem of cart) {
-                const queryParams = new URLSearchParams({ id: cartItem.id }).toString();
-                const url = `/api/${bookmark.type}?${queryParams}`;
-                const gotInfo = await fetch(url, {
-                    method: 'GET', 
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                const info = await gotInfo.json();
+            /* const bookmarkDiv = document.createElement('div');
+            bookmarkDiv.classList.add('bookmark');
 
-                const bookmarkDiv = document.createElement('div');
-                bookmarkDiv.classList.add('bookmark');
+            const img = document.createElement('img');
+            img.src = info.image || "/placeholder";
+            img.alt = info.name;
 
-                const img = document.createElement('img');
-                img.src = info.image || "/placeholder";
-                img.alt = info.name;
+            const contentDiv = document.createElement('div');
+            contentDiv.classList.add('bookmark-content');
 
-                const contentDiv = document.createElement('div');
-                contentDiv.classList.add('bookmark-content');
+            const title = document.createElement('h2');
+            title.classList.add('bookmark-title');
+            title.textContent = info.name+" - "+info.price+"€";
 
-                const title = document.createElement('h2');
-                title.classList.add('bookmark-title');
-                title.textContent = info.name+" - "+info.price+"€";
+            const location = document.createElement('p');
+            location.classList.add('bookmark-description');
+            location.textContent = info.location;
 
-                const location = document.createElement('p');
-                location.classList.add('bookmark-description');
-                location.textContent = info.location;
+            const description = document.createElement('p');
+            description.classList.add('bookmark-description');
+            description.textContent = info.description || 'Descrição não disponível.';
 
-                const description = document.createElement('p');
-                description.classList.add('bookmark-description');
-                description.textContent = info.description || 'Descrição não disponível.';
+            const buttonBook = document.createElement('button');
+            const iconBook = document.createElement('i');
+            iconBook.classList.add('fas', 'fa-bookmark');
+            iconBook.style.color = '#045A50';
+            buttonBook.appendChild(iconBook);
+            buttonBook.setAttribute('onclick', 'toggleSave(this)');
 
-                const buttonBook = document.createElement('button');
-                const iconBook = document.createElement('i');
-                iconBook.classList.add('fas', 'fa-bookmark');
-                iconBook.style.color = '#045A50';
-                buttonBook.appendChild(iconBook);
-                buttonBook.setAttribute('onclick', 'toggleSave(this)');
+            contentDiv.appendChild(title);
+            contentDiv.appendChild(location);
+            contentDiv.appendChild(description);
+            contentDiv.appendChild(buttonBook);
 
-                contentDiv.appendChild(title);
-                contentDiv.appendChild(location);
-                contentDiv.appendChild(description);
-                contentDiv.appendChild(buttonBook);
+            bookmarkDiv.appendChild(img);
+            bookmarkDiv.appendChild(contentDiv);
 
-                bookmarkDiv.appendChild(img);
-                bookmarkDiv.appendChild(contentDiv);
-
-                container.appendChild(bookmarkDiv);
-            }
+            container.appendChild(bookmarkDiv); */
         } catch (error) {
             alert("An error occurred: " + error);
         }

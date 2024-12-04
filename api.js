@@ -17,10 +17,20 @@ api.get('/', async(req, res) => {
     functions.loadPage();
 });
 
+api.get('/profile/', async (req, res) => {
+    const userId = req.query && req.query.id ? req.query.id : null;
+    sql.query('SELECT * FROM users WHERE id=?', [userId], async (err, results) => {
+        if (err) { res.status(500).json({message: 'An Error Occurred.'}); }
+        if (results.length > 0) {
+            return res.status(200).json(JSON.parse(JSON.stringify(results)));
+        }
+        return res.status(200).json([]); 
+    });
+});
+
 api.post('/login/', async(req, res) => {
     const email = (req.query && req.query.email ? req.query.email : null);
     const password = (req.query && req.query.password ? req.query.password : null);
-    console.log(email, password);
     if (!email || !password) { return res.status(400).send('Invalid Credentials.');}
     try {
         sql.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
@@ -41,7 +51,6 @@ api.post('/register/', async(req, res) => {
     const fullname = (req.query && req.query.fullname ? req.query.fullname : null);
     const email = (req.query && req.query.email ? req.query.email : null);
     const password = (req.query && req.query.password ? req.query.password : null);
-    console.log(fullname, email, password);
     if (!fullname || !email || !password) { return res.status(400).send('Needed All Credentials.'); }
     try {
         sql.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
@@ -49,7 +58,6 @@ api.post('/register/', async(req, res) => {
             if (results.length > 0) { return res.status(400).send("Can't Create User With That E-Mail."); }
             const cipherPassword = await bcrypt.hash(password, 10);
             const createdUser = sql.query(`INSERT INTO users (email, password, fullname) VALUES (?,?,?)`, [email, cipherPassword, fullname]);
-            console.log(createdUser.values);
             if (!createdUser.values) { return res.status(400).send('An Error Occurred.'); }
             return res.status(200).send('User Registered Successfully.');
         });    
@@ -80,8 +88,6 @@ api.post('/password-reset/', async (req, res) => {
         }
         return res.status(400).send('Email Não Encontrado.'); 
     });
-
-    
 });  
 
 api.post('/update/', async (req, res) => {
@@ -93,7 +99,6 @@ api.post('/update/', async (req, res) => {
     sql.query('SELECT * FROM users WHERE resettoken = ?', [token], async (err, results) => {
         if (err) { res.status(500).send('An Error Occurred.'); }
         if (results.length > 0) {
-            console.log(results);
             const cipherPassword = await bcrypt.hash(password, 10);
             const updatedUser = sql.query(`UPDATE users SET password=?,resettoken=? WHERE resettoken=?`, [cipherPassword, "", token]);
             if (!updatedUser.values) { return res.status(400).send('An Error Occurred.'); }
@@ -109,7 +114,7 @@ api.get('/hotels/', async (req, res) => {
         if (results.length > 0) {
             return res.status(200).json(JSON.parse(JSON.stringify(results)));
         }
-        return res.status(400).json({});
+        return res.status(200).json([]);
     });
 });
 
@@ -119,7 +124,7 @@ api.get('/events/', async (req, res) => {
         if (results.length > 0) {
             return res.status(200).json(JSON.parse(JSON.stringify(results)));
         }
-        return res.status(400).json({}); 
+        return res.status(200).json([]); 
     });
 });
 
@@ -129,20 +134,29 @@ api.get('/packs/', async (req, res) => {
         if (results.length > 0) {
             return res.status(200).json(JSON.parse(JSON.stringify(results)));
         }
-        return res.status(400).json({}); 
+        return res.status(200).json([]); 
     });
 });
 
 api.get('/bookmarks/', async (req, res) => {
     const userId = req.query && req.query.id ? req.query.id : null;
-    console.log(userId);
     sql.query('SELECT * FROM bookmarks WHERE userId=?', [userId], async (err, results) => {
         if (err) { res.status(500).json({message: 'An Error Occurred.'}); }
-        console.log(results.length);
         if (results.length > 0) {
             return res.status(200).json(JSON.parse(JSON.stringify(results)));
         }
-        return res.status(400).json({}); 
+        return res.status(200).json([]); 
+    });
+});
+
+api.get('/cart/', async (req, res) => {
+    const userId = req.query && req.query.id ? req.query.id : null;
+    sql.query('SELECT * FROM cart WHERE userId=?', [userId], async (err, results) => {
+        if (err) { res.status(500).json({message: 'An Error Occurred.'}); }
+        if (results.length > 0) {
+            return res.status(200).json(JSON.parse(JSON.stringify(results)));
+        }
+        return res.status(200).json([]); 
     });
 });
 
@@ -153,7 +167,7 @@ api.get('/hotel/', async (req, res) => {
         if (results.length > 0) {
             return res.status(200).json(JSON.parse(JSON.stringify(results[0])));
         }
-        return res.status(400).json({}); 
+        return res.status(200).json([]); 
     });
 });
 
@@ -164,7 +178,7 @@ api.get('/event/', async (req, res) => {
         if (results.length > 0) {
             return res.status(200).json(JSON.parse(JSON.stringify(results[0])));
         }
-        return res.status(400).json({}); 
+        return res.status(200).json([]); 
     });
 });
 
@@ -175,7 +189,7 @@ api.get('/pack/', async (req, res) => {
         if (results.length > 0) {
             return res.status(200).json(JSON.parse(JSON.stringify(results[0])));
         }
-        return res.status(400).json({}); 
+        return res.status(200).json([]); 
     });
 });
 
