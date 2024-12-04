@@ -134,8 +134,11 @@ api.get('/packs/', async (req, res) => {
 });
 
 api.get('/bookmarks/', async (req, res) => {
-    sql.query('SELECT * FROM bookmarks', [], async (err, results) => {
+    const userId = req.query && req.query.id ? req.query.id : null;
+    console.log(userId);
+    sql.query('SELECT * FROM bookmarks WHERE userId=?', [userId], async (err, results) => {
         if (err) { res.status(500).json({message: 'An Error Occurred.'}); }
+        console.log(results.length);
         if (results.length > 0) {
             return res.status(200).json(JSON.parse(JSON.stringify(results)));
         }
