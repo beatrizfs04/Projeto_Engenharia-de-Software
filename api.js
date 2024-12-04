@@ -131,6 +131,49 @@ api.get('/packs/', async (req, res) => {
         }
         return res.status(400).json({}); 
     });
-})
+});
+
+api.get('/bookmarks/', async (req, res) => {
+    sql.query('SELECT * FROM bookmarks', [], async (err, results) => {
+        if (err) { res.status(500).json({message: 'An Error Occurred.'}); }
+        if (results.length > 0) {
+            return res.status(200).json(JSON.parse(JSON.stringify(results)));
+        }
+        return res.status(400).json({}); 
+    });
+});
+
+api.get('/hotel/', async (req, res) => {
+    const hotelId = req.query && req.query.id ? req.query.id : null;
+    sql.query('SELECT * FROM hotels WHERE id=?', [hotelId], async (err, results) => {
+        if (err) { res.status(500).json({message: 'An Error Occurred.'}); }
+        if (results.length > 0) {
+            return res.status(200).json(JSON.parse(JSON.stringify(results[0])));
+        }
+        return res.status(400).json({}); 
+    });
+});
+
+api.get('/event/', async (req, res) => {
+    const eventId = req.query && req.query.id ? req.query.id : null;
+    sql.query('SELECT * FROM events WHERE id=?', [eventId], async (err, results) => {
+        if (err) { res.status(500).json({message: 'An Error Occurred.'}); }
+        if (results.length > 0) {
+            return res.status(200).json(JSON.parse(JSON.stringify(results[0])));
+        }
+        return res.status(400).json({}); 
+    });
+});
+
+api.get('/pack/', async (req, res) => {
+    const packId = req.query && req.query.id ? req.query.id : null;
+    sql.query('SELECT * FROM packs WHERE id=?', [packId], async (err, results) => {
+        if (err) { res.status(500).json({message: 'An Error Occurred.'}); }
+        if (results.length > 0) {
+            return res.status(200).json(JSON.parse(JSON.stringify(results[0])));
+        }
+        return res.status(400).json({}); 
+    });
+});
 
 module.exports = api;

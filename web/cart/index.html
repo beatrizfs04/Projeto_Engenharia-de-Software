@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/08e7e3bedd.js" crossorigin="anonymous"></script>
-    <title>Cart - Tour-It</title>
+    <title>Hotels - Tour-It</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Agdasima:wght@400;700&display=swap');
 
@@ -12,59 +12,202 @@
             font-family: "Agdasima", sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(to bottom, #01332D, #045A50, #0A9080);
+            background-color: white;
+            height: 100vh;
         }
 
         header {
-            color: white;
+            color: #01332D;
             text-align: center;
-            padding: 2rem;
             border-bottom-left-radius: 28px; /* Round the bottom of the header */
             border-bottom-right-radius: 28px;
             position: relative;
             z-index: 1; /* Keep it below the container */
+            margin-bottom: 100px;
         }
 
-        header img {
+        .nav {
+            width: 100%;
+            height: 80px;
+            margin-bottom: 40px;
+            background: linear-gradient(to bottom, #01332D, #045A50, #0A9080);
+            overflow: hidden;
+        }
+
+        .nav2{
+            margin: 15px;
+            margin-top: 0px;
+        }
+        
+        .nav .filtros {
             width: 10%;
-            height: auto;
-            padding: 10px;
+            height: 40px;
+            margin: 5px;
+            margin-right: 10px;
+            background-color: #ccc;
+            border-radius: 50%;
+            float: left;
+        }
+         
+        .nav .nav2 .filtros a {
+            font-weight: bold;
+            text-decoration: none;
+            color: #045A50;
         }
 
-        header h1 {
-            align-items: center;
+        .nav .nav2 .filtros a i {
+            margin-top: 30%;
+        }
+
+        .nav .pesquisa  {
+            background-color: white;
+            border-radius: 40%;
+            margin-top: 20px;
+        }
+
+        .nav input[type=text] {
+            padding: 6px;
+            font-size: 17px;
+            text-align: left;
             margin: 0;
+            float: left;
+            border: auto;
+            border: 0px;
+            border-radius: 10px;
+            width: 80%;
+            height: 30px;
+            margin: 5px;
+        }
+
+        .nav .pesquisa button {
+            background: #ddd;
+            font-size: 17px;
+            text-align: left;
+            width: 14%;
+            margin: 0;
+            padding: 14px;
+            float: right;
+        }
+
+        .nav .pesquisa button:hover {
+            background: #ccc;
+        }
+
+        .container .buttons, .container h1 {
+            position: relative;
+            align-items: center;
             text-align: center;
-            font-size: 2rem;
+            font-size: 1.6rem;
+            background-color: white;
+            border-radius: 40px;
+            padding: 20px;
+            border: none;
+            top: -60px;
+            box-shadow: 0px -7px 9px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-around;
+            z-index: 1000;
+        }
+
+        .buttons button{
+            border-radius: 20px;
+            padding: 15px;
+            margin: 10px;
+            border: none;
+        }
+
+        .buttons button.active {
+            color: #045A50;
+        }
+        
+        .buttons button i {
+            padding-bottom: 10px;
+            font-size: 1.6rem;
+        }        
+
+        .buttons button span {
+            font-size: 0.8rem;
         }
 
         .container {
             padding: 2rem;
             max-width: 900px;
-            height: 90vh;
             margin: auto;
-            margin-top: -60px; /* Pull the container upwards to overlap the header */
             position: relative; /* Allow positioning with z-index */
             z-index: 2; /* Ensure it is above the header */
-            background-color: white;
-            border-top-left-radius: 28px;
-            border-top-right-radius: 28px;
+            background-color: #0A9080;
+            border-top-left-radius: 70px; /* Rounded top corners */
+            border-top-right-radius: 70px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Add depth */
+            margin: auto;
         }
 
+        .container .bookmark{
+            top: -20px;
+        }
         .bookmark {
             position: relative; /* Needed to position the save icon inside each bookmark */
             display: flex;
             align-items: center;
             background-color: white;
             margin: 1rem;
-            border-radius: 12px;
+            border-radius: 40px;
             overflow: hidden;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             opacity: 0;
             transform: translateY(50px);
             animation: fadeInUp 0.8s ease forwards;
+            flex-direction: column; 
+            text-align: left;
+            margin-bottom: 30px;
         }
+        
+        .bookmark img {
+            width: 100%; 
+            height: auto; 
+            object-fit: cover;
+        }
+
+        .bookmark-content {
+            padding: 0.5rem;
+            flex-grow: 1;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .bookmark-title {
+            font-size: 1.4rem;
+            margin-left: 15px;
+            margin-top: 0%;
+            margin-bottom: 0%;
+            margin-right: 0%;
+        }
+
+        .bookmark-description {
+            margin-top: 0.5rem;
+            font-size: 1.1rem;
+            color: #555;
+            margin: 15px;
+        }
+
+        .bookmark button {
+            position: absolute;
+            right: 30px;
+            top: 5px;
+            width: 24px;
+            height: 24px;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s;
+            color: rgba(0, 0, 0, 0.767);
+        }
+
+        .bookmark i::before {
+            font-size: 24px;
+            display: block;
+            text-align: center;
+        }        
 
         .bookmark:nth-child(1) {
             animation-delay: 0.2s;
@@ -85,84 +228,6 @@
                 opacity: 1;
                 transform: translateY(0); /* End at final position */
             }
-        }
-
-        .bookmark img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-        }
-
-        .bookmark-content {
-            padding: 1rem;
-            flex-grow: 1;
-            position: relative;
-        }
-
-        .bookmark-title {
-            font-size: 1.4rem;
-            margin: 0;
-        }
-
-        .bookmark-description {
-            margin-top: 0.5rem;
-            font-size: 1.1rem;
-            color: #555;
-        }
-
-        
-        header img {
-            width: 35%; /* Adjusted for better display on larger screens */
-            height: auto;
-            padding: 10px;
-        }
-
-        .container {
-            padding: 2rem;
-            max-width: 900px;
-            height: 70vh;
-            margin: auto;
-            border-top-left-radius: 28px;
-            border-top-right-radius: 28px;
-        }
-
-        .bookmark {
-            flex-direction: column; /* Use column layout to stack items */
-            text-align: center; /* Center text for better readability */
-            margin-bottom: 20pt;
-        }
-
-        .bookmark img {
-            width: 100%; /* Use full width for bookmark images */
-            height: auto; /* Maintain aspect ratio */
-        }
-
-        .bookmark-content {
-            padding: 0.5rem; /* Less padding for a compact design */
-        }
-
-        .bookmark-title {
-            font-size: 1.4rem; /* Title size */
-        }
-
-        .bookmark-description {
-            font-size: 1.1rem; /* Description size */
-        }
-
-        .remove-item {
-            background-color: #034941;
-            color: #ffffff;
-            width: 65%;
-            height: 45px;
-            border: none;
-            border-radius: 15px;
-            font-size: 100%;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .remove-item:hover {
-            background-color: #085f55;
         }
 
         footer {
@@ -199,31 +264,22 @@
 </head>
 <body>
     <header>
-        <img alt="Tour-It Logo" src="/logo"/>
-        <h1 id="cartTitle">Cart</h1>
+        <div class="nav">
+            <div class="nav2">
+                <div class="filtros">
+                    <a href="filtros" alt="Fitros"><i class="fa-solid fa-sliders"></i></a>
+                </div>
+                <div class="pesquisa">
+                    <form action="/action_page.php">
+                        <input type="text" placeholder="Pesquisar" name="search">
+                    </form>
+                </div>
+            </div>
+        </div>
     </header>
 
-    <div class="container">
-        <div class="bookmark">
-            <img src="placeholder" alt="Product Example">
-            <div class="bookmark-content">
-                <h2 class="bookmark-title">Product Example</h2>
-                <p class="bookmark-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="remove-item">Remove</button>
-            </div>
-        </div>
-        <div class="bookmark">
-            <img src="placeholder" alt="Product Example">
-            <div class="bookmark-content">
-                <h2 class="bookmark-title">Product Example</h2>
-                <p class="bookmark-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="remove-item">Remove</button>
-            </div>
-        </div>
+    <div id="container" class="container">
+        <h1 id="cartTitle">Cart</h1>
     </div>
 
     <footer>
@@ -248,14 +304,86 @@
 <script src="scripts"></script>
 <script>
     CheckSession()
-    window.onload = function() {
+    window.onload = async function() {
+        const container = document.getElementById("container");
+
         let userData = localStorage.getItem("userData") ? JSON.parse(localStorage.getItem("userData")) : null;
         if (userData) {
             console.log(userData); // userData should now be a parsed object
             const cartTitle = document.getElementById("cartTitle");
             cartTitle.textContent = `${userData.fullname}'s Cart`;
         }
+
+        try {
+            const response = await fetch('/api/bookmarks', {
+                method: 'GET', 
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const bookmarks = await response.json();
+
+            for (const bookmark of bookmarks) {
+                const queryParams = new URLSearchParams({ id: bookmark.id }).toString();
+                const url = `/api/${bookmark.type}?${queryParams}`;
+                const gotInfo = await fetch(url, {
+                    method: 'GET', 
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const info = await gotInfo.json();
+
+                const bookmarkDiv = document.createElement('div');
+                bookmarkDiv.classList.add('bookmark');
+
+                const img = document.createElement('img');
+                img.src = info.image || "/placeholder";
+                img.alt = info.name;
+
+                const contentDiv = document.createElement('div');
+                contentDiv.classList.add('bookmark-content');
+
+                const title = document.createElement('h2');
+                title.classList.add('bookmark-title');
+                title.textContent = info.name+" - "+info.price+"€";
+
+                const location = document.createElement('p');
+                location.classList.add('bookmark-description');
+                location.textContent = info.location;
+
+                const description = document.createElement('p');
+                description.classList.add('bookmark-description');
+                description.textContent = info.description || 'Descrição não disponível.';
+
+                const buttonBook = document.createElement('button');
+                const iconBook = document.createElement('i');
+                iconBook.classList.add('fas', 'fa-bookmark');
+                iconBook.style.color = '#045A50';
+                buttonBook.appendChild(iconBook);
+                buttonBook.setAttribute('onclick', 'toggleSave(this)');
+
+                contentDiv.appendChild(title);
+                contentDiv.appendChild(location);
+                contentDiv.appendChild(description);
+                contentDiv.appendChild(buttonBook);
+
+                bookmarkDiv.appendChild(img);
+                bookmarkDiv.appendChild(contentDiv);
+
+                container.appendChild(bookmarkDiv);
+            }
+        } catch (error) {
+            alert("An error occurred: " + error);
+        }
     };
+
+    function toggleSave(element) {
+        const icon = element.querySelector('i');
+        icon.classList.toggle('far');
+        icon.classList.toggle('fas');
+    }
 </script>
 </html>
 
