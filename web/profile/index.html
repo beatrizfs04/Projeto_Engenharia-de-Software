@@ -177,7 +177,7 @@
         }
 
         #points{
-            width: 30%;
+            width: 40%;
             height: 50px;
             background-color: white;
             border: 1px solid #0A9080;
@@ -191,6 +191,16 @@
             font-size: 30px;
         }
 
+        #points p {
+            height: 100px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 30px;
+        }
+
         #information button{
             background-color: #0A9080;
             border: 0px;
@@ -200,8 +210,17 @@
             margin: 0 auto;
             display: flex;
             margin-top: 30px;
-            margin-bottom: 100px;
+            margin-bottom: 10px;
             color: white;
+        }
+
+        #message {
+            padding: 0;
+            margin: 0;
+            font-weight: bolder;
+            align-items: center;
+            text-align: center;
+            font-size: 1.4rem;
         }
 
     </style>
@@ -220,19 +239,20 @@
 
     <div class="container">
         <div id="information">
-            <h1>Perfil</h1>
+            <h1>Profile</h1>
             <hr>
-            <h2>Nome</h2>
-            <p>username</p>
+            <h2>Full Name</h2>
+            <p id="fullname">Full Name</p>
             <hr>
-            <h2>Email</h2>
-            <p>username@gmail.com</p>
-            <h1>Pontos</h1>
+            <h2>E-Mail</h2>
+            <p id="email">username@gmail.com</p>
+            <h1>Points</h1>
             <div id="points">
                 <i class="fa-solid fa-coins"></i>
-                200pts
+                <p id="user-points">200pts</p>
             </div>
-            <button>Logout</button>
+            <button onclick="Logout()">Logout</button>
+            <div id="message"></div>
         </div>
     </div>
 
@@ -262,11 +282,6 @@
         const container = document.getElementById("container");
 
         let userData = localStorage.getItem("userData") ? JSON.parse(localStorage.getItem("userData")) : null;
-        if (userData) {
-            console.log(userData); // userData should now be a parsed object
-            const profileTitle = document.getElementById("profileTitle");
-            profileTitle.textContent = `${userData.fullname}'s \nProfile`;
-        }
 
         try {
             const queryParams = new URLSearchParams({ id: userData.id }).toString();
@@ -279,48 +294,31 @@
 
             const userInfo = await response.json();
 
-            /* const bookmarkDiv = document.createElement('div');
-            bookmarkDiv.classList.add('bookmark');
+            const profileTitle = document.getElementById("profileTitle");
+            profileTitle.textContent = `${userData.fullname}'s \nProfile`;
 
-            const img = document.createElement('img');
-            img.src = info.image || "/placeholder";
-            img.alt = info.name;
+            const fullname = document.getElementById("fullname");
+            fullname.textContent = userInfo.fullname
 
-            const contentDiv = document.createElement('div');
-            contentDiv.classList.add('bookmark-content');
+            const email = document.getElementById("email");
+            email.textContent = userInfo.email
 
-            const title = document.createElement('h2');
-            title.classList.add('bookmark-title');
-            title.textContent = info.name+" - "+info.price+"€";
-
-            const location = document.createElement('p');
-            location.classList.add('bookmark-description');
-            location.textContent = info.location;
-
-            const description = document.createElement('p');
-            description.classList.add('bookmark-description');
-            description.textContent = info.description || 'Descrição não disponível.';
-
-            const buttonBook = document.createElement('button');
-            const iconBook = document.createElement('i');
-            iconBook.classList.add('fas', 'fa-bookmark');
-            iconBook.style.color = '#045A50';
-            buttonBook.appendChild(iconBook);
-            buttonBook.setAttribute('onclick', 'toggleSave(this)');
-
-            contentDiv.appendChild(title);
-            contentDiv.appendChild(location);
-            contentDiv.appendChild(description);
-            contentDiv.appendChild(buttonBook);
-
-            bookmarkDiv.appendChild(img);
-            bookmarkDiv.appendChild(contentDiv);
-
-            container.appendChild(bookmarkDiv); */
+            const userpoints = document.getElementById("user-points");
+            userpoints.textContent = userInfo.points + " Points";
         } catch (error) {
             alert("An error occurred: " + error);
         }
     };
+
+    function Logout() {
+        const messageBox = document.getElementById('message');
+        localStorage.removeItem("userData");
+        messageBox.textContent = 'Logout Successfully! \nRedirecting...';
+        messageBox.style.color = 'green';
+        setTimeout(() => {
+            window.location.replace("/");
+        }, "2500");
+    }
 
     function toggleSave(element) {
         const icon = element.querySelector('i');
