@@ -14,7 +14,6 @@
             margin: 0;
             padding: 0;
             background-color: white;
-            height: 100vh;
         }
 
         header {
@@ -22,92 +21,61 @@
             text-align: center;
             border-bottom-left-radius: 28px; /* Round the bottom of the header */
             border-bottom-right-radius: 28px;
-            position: relative;
-            z-index: 1; /* Keep it below the container */
             margin-bottom: 100px;
         }
 
         .nav {
             width: 100%;
-            height: 80px;
-            margin-bottom: 40px;
-            background: linear-gradient(to bottom, #01332D, #045A50, #0A9080);
-            overflow: hidden;
+            height: 200px;
+            background-color: #0A9080;
+            border-radius: 0px 0px 30px 30px;
+            top: 0px;
         }
 
-        .nav2{
-            margin: 15px;
-            margin-top: 0px;
-        }
-        
-        .nav .filtros {
-            width: 10%;
-            height: 40px;
-            margin: 5px;
-            margin-right: 10px;
-            background-color: #ccc;
-            border-radius: 50%;
-            float: left;
-        }
-         
-        .nav .nav2 .filtros a {
-            font-weight: bold;
-            text-decoration: none;
-            color: #045A50;
+        .perfil .circulo {
+           position: absolute;
+           width: 173px;
+           height: 172px;
+           left: calc(50% - 173px/2 - 0.5px);
+           top: 120px;
+           background: #D9D9D9;
+           box-shadow: 2px 4px 20px 4px rgba(0, 0, 0, 0.25);
+           border-radius: 100px;
         }
 
-        .nav .nav2 .filtros a i {
-            margin-top: 30%;
+        * Icon dentro do Circulo do Perfil */
+        .perfil .icon {
+           position: absolute;
+           width: 154px;
+           height: 153px;
+           left: calc(50% - 154px/2);
+           top: 246px;
         }
 
-        .nav .pesquisa  {
-            background-color: white;
-            border-radius: 40%;
-            margin-top: 20px;
-        }
-
-        .nav input[type=text] {
-            padding: 6px;
-            font-size: 17px;
-            text-align: left;
-            margin: 0;
-            float: left;
-            border: auto;
-            border: 0px;
-            border-radius: 10px;
-            width: 80%;
-            height: 30px;
-            margin: 5px;
-        }
-
-        .nav .pesquisa button {
-            background: #ddd;
-            font-size: 17px;
-            text-align: left;
-            width: 14%;
-            margin: 0;
-            padding: 14px;
-            float: right;
-        }
-
-        .nav .pesquisa button:hover {
-            background: #ccc;
-        }
-
-        .container .buttons, .container h1 {
+        .container .buttons {
             position: relative;
             align-items: center;
             text-align: center;
-            font-size: 1.6rem;
             background-color: white;
             border-radius: 40px;
             padding: 20px;
             border: none;
             top: -60px;
-            box-shadow: 0px -7px 9px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: space-around;
             z-index: 1000;
+        }
+
+
+        .nav h1{
+            position: relative;
+            align-items: center;
+            text-align: center;
+            font-size: 2rem;
+            color: white;
+            top: 60px;
+            margin-top: 0;
+            padding-top: 0;
         }
 
         .buttons button{
@@ -128,96 +96,6 @@
 
         .buttons button span {
             font-size: 0.8rem;
-        }
-
-        .container {
-            padding: 2rem;
-            max-width: 900px;
-            margin: auto;
-            position: relative; /* Allow positioning with z-index */
-            z-index: 2; /* Ensure it is above the header */
-            background-color: #0A9080;
-            border-top-left-radius: 70px; /* Rounded top corners */
-            border-top-right-radius: 70px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Add depth */
-            margin: auto;
-        }
-
-        .container .bookmark{
-            top: -20px;
-        }
-        .bookmark {
-            position: relative; /* Needed to position the save icon inside each bookmark */
-            display: flex;
-            align-items: center;
-            background-color: white;
-            margin: 1rem;
-            border-radius: 40px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            transform: translateY(50px);
-            animation: fadeInUp 0.8s ease forwards;
-            flex-direction: column; 
-            text-align: left;
-            margin-bottom: 30px;
-        }
-        
-        .bookmark img {
-            width: 100%; 
-            height: auto; 
-            object-fit: cover;
-        }
-
-        .bookmark-content {
-            padding: 0.5rem;
-            flex-grow: 1;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .bookmark-title {
-            font-size: 1.4rem;
-            margin-left: 15px;
-            margin-top: 0%;
-            margin-bottom: 0%;
-            margin-right: 0%;
-        }
-
-        .bookmark-description {
-            margin-top: 0.5rem;
-            font-size: 1.1rem;
-            color: #555;
-            margin: 15px;
-        }
-
-        .bookmark button {
-            position: absolute;
-            right: 30px;
-            top: 5px;
-            width: 24px;
-            height: 24px;
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            transition: color 0.3s;
-            color: rgba(0, 0, 0, 0.767);
-        }
-
-        .bookmark i::before {
-            font-size: 24px;
-            display: block;
-            text-align: center;
-        }        
-
-        .bookmark:nth-child(1) {
-            animation-delay: 0.2s;
-        }
-        .bookmark:nth-child(2) {
-            animation-delay: 0.4s;
-        }
-        .bookmark:nth-child(3) {
-            animation-delay: 0.6s;
         }
 
         @keyframes fadeInUp {
@@ -261,26 +139,101 @@
             color: #045A50;
         }
 
+
+        #information{
+            background-color: white;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        #information h1{
+            font-style: normal;
+            font-weight: 600;
+            font-size: 30px;
+            color: #181818;
+        }
+
+        #information hr{
+            border-top: 1px solid #0A9080;
+            margin-bottom: 3px;
+        }
+
+        #information h2{
+            font-style: normal;
+            font-weight: 600;
+            font-size: 20px;
+            color: #323232;
+            margin-left: 10px;
+            margin-bottom: 0;
+        }
+
+        #information p{
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            color: #4a4a4a;
+            margin-left: 20px;
+            margin-top: 0;
+        }
+
+        #points{
+            width: 30%;
+            height: 50px;
+            background-color: white;
+            border: 1px solid #0A9080;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 100px 20px 100px;
+            gap: 10px;
+            font-size: 30px;
+        }
+
+        #information button{
+            background-color: #0A9080;
+            border: 0px;
+            border-radius: 20px;
+            padding: 15px 40px 15px 40px;
+            font-size: 18px;
+            margin: 0 auto;
+            display: flex;
+            margin-top: 30px;
+            margin-bottom: 100px;
+            color: white;
+        }
+
     </style>
 </head>
 <body>
     <header>
         <div class="nav">
-            <div class="nav2">
-                <!-- <div class="filtros">
-                    <a href="filtros" alt="Fitros"><i class="fa-solid fa-sliders"></i></a>
+            <h1 id="profileTitle">Profile</h1>
+            <div class="perfil">
+                <div class="circulo">
+                    <i class="fa-solid fa-user fa-8x" style="color: #212121; margin-top: 15px;"></i>
                 </div>
-                <div class="pesquisa">
-                    <form action="/action_page.php">
-                        <input type="text" placeholder="Pesquisar" name="search">
-                    </form>
-                </div> -->
             </div>
         </div>
     </header>
 
-    <div id="container" class="container">
-        <h1 id="profileTitle">Profile</h1>
+    <div class="container">
+        <div id="information">
+            <h1>Perfil</h1>
+            <hr>
+            <h2>Nome</h2>
+            <p>username</p>
+            <hr>
+            <h2>Email</h2>
+            <p>username@gmail.com</p>
+            <h1>Pontos</h1>
+            <div id="points">
+                <i class="fa-solid fa-coins"></i>
+                200pts
+            </div>
+            <button>Logout</button>
+        </div>
     </div>
 
     <footer>
