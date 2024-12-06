@@ -362,10 +362,10 @@
 
                 const buttonBook = document.createElement('button');
                 const iconBook = document.createElement('i');
-                iconBook.classList.add('fas', 'fa-bookmark');
+                iconBook.classList.add('fas', 'fa-trash');
                 iconBook.style.color = '#045A50';
                 buttonBook.appendChild(iconBook);
-                buttonBook.setAttribute('onclick', 'toggleSave(this)');
+                buttonBook.setAttribute('onclick', 'removeFromCart(this)');
 
                 contentDiv.appendChild(title);
                 contentDiv.appendChild(location);
@@ -382,10 +382,8 @@
         }
     };
 
-    function toggleSave(element) {
+    function removeFromCart(element) {
         const icon = element.querySelector('i');
-        icon.classList.toggle('far');
-        icon.classList.toggle('fas');
     }
 </script>
 </html>
