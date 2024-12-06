@@ -316,7 +316,9 @@
         }
 
         try {
-            const response = await fetch('/api/cart', {
+            const queryParams = new URLSearchParams({ id: userData.id }).toString();
+            const url = `/api/cart?${queryParams}`;
+            const response = await fetch(url, {
                 method: 'GET', 
                 headers: {
                     'Content-Type': 'application/json'
@@ -327,7 +329,7 @@
 
             for (const cartItem of cart) {
                 const queryParams = new URLSearchParams({ id: cartItem.id }).toString();
-                const url = `/api/${bookmark.type}?${queryParams}`;
+                const url = `/api/${cartItem.type}?${queryParams}`;
                 const gotInfo = await fetch(url, {
                     method: 'GET', 
                     headers: {
