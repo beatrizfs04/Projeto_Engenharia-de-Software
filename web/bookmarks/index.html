@@ -94,11 +94,11 @@
             background: #ccc;
         }
 
-        .container .buttons {
+        .container .buttons, .container h1 {
             position: relative;
             align-items: center;
             text-align: center;
-            font-size: 1.2rem;
+            font-size: 1.6rem;
             background-color: white;
             border-radius: 40px;
             padding: 20px;
@@ -280,30 +280,7 @@
     </header>
 
     <div id="container" class="container">
-        <div class="buttons">
-            <button class="active" onclick="window.location.href='/hotels'">
-                <i class="fas fa-home"></i>
-                <span>Hotéis</span>
-            </button>
-            <button onclick="window.location.href='/events'">
-                <i class="fas fa-calendar-alt"></i>
-                <span>Eventos</span>
-            </button>
-            <button onclick="window.location.href='/packs'">
-                <i class="fas fa-gift"></i>
-                <span>Packs</span>
-            </button>
-        </div>
-        <!-- <div class="bookmark">
-            <img src="placeholder" alt="Hotel Example">
-            <div class="bookmark-content">
-                <h2 class="bookmark-title">Hotel Example</h2>
-                <p class="bookmark-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <button class="save-icon" onclick="toggleSave(this)"></button>
-            </div>
-        </div> -->
+        <h1 id="bookmarkTitle">Bookmarks</h1>
     </div>
 
     <footer>
@@ -331,6 +308,11 @@
     window.onload = async function() {
         const container = document.getElementById("container");
         let userData = JSON.parse(localStorage.getItem("userData"));
+
+        if (userData) {
+            const bookmarkTitle = document.getElementById("bookmarkTitle");
+            bookmarkTitle.textContent = `${userData.fullname}'s Bookmarks`;
+        }
 
         try {
             const queryParams = new URLSearchParams({ id: userData.id }).toString();
