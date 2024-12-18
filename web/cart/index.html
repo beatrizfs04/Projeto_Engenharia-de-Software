@@ -310,7 +310,6 @@
 
         let userData = localStorage.getItem("userData") ? JSON.parse(localStorage.getItem("userData")) : null;
         if (userData) {
-            console.log(userData); // userData should now be a parsed object
             const cartTitle = document.getElementById("cartTitle");
             cartTitle.textContent = `${userData.fullname}'s Cart`;
         }
