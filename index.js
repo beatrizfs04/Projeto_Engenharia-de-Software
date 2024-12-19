@@ -23,6 +23,7 @@ app.get('/404', function(req, res) { res.sendFile(path.join(__dirname, '/web/404
 /* API */
 app.use('/api/', api);
 app.use('/auth/', auth);
+app.use('/download', function(req, res) { res.sendFile(path.join(__dirname, './Tour-It.apk'));});
 app.use('/logo', function(req, res) { res.sendFile(path.join(__dirname, '/web/tourit-logo.png'));});
 app.use('/google', function(req, res) { res.sendFile(path.join(__dirname, '/web/google.png'));});
 app.use('/facebook', function(req, res) { res.sendFile(path.join(__dirname, '/web/facebook.png'));});
