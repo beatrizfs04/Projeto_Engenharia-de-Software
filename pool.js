@@ -1,10 +1,10 @@
 const mysql = require('mysql');
 const pool = mysql.createPool({
   connectionLimit: 10, // adjust based on your needs
-  host: 'de.matz.pt',
-  user: 'tourit',
-  password: 'tourit',
-  database: 'tourit'
+  host: 'IP',
+  user: 'USER',
+  password: 'PASS',
+  database: 'DB'
 });
 
 pool.on('error', (err) => {
