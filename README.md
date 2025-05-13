@@ -8,5 +8,5 @@
 ## Como Iniciar o Projeto?
 
 - Devem primeiro abrir este diretório na linha de comandos (CMD) e fazer o comando **npm i** ou **npm install** para que todos os módulos sejam instalados de forma correta.
-- Após isto, devem clicar duas vezes no ficheiro initialize.bat, para que o projeto seja inicializado e, para que o mesmo, faça todos os passos sozinho.
+- Após isto, devem clicar duas vezes no ficheiro Initialize.bat, para que o projeto seja inicializado e, para que o mesmo, faça todos os passos sozinho.
 - Finalmente, devem abrir o browser e colocar o seguinte URL: *http://localhost:5000*.
