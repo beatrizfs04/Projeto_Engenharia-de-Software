@@ -1,4 +1,5 @@
-# Tour-It - Projeto Engenharia de Software - Composto Por:
+# Tour-It - Projeto Engenharia de Software
+## Composto Por:
 - Beatriz Figueiredo Santos » 50473
 - Eduardo Pires Valentim de Almeida Abrantes » 50391
 - Manoela Padilha de Azevedo » 50034
